@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Russo‑Japanese War & the 1905 Revolution – HPQ Website</title>
-
+<title>Russo‑Japanese War & the 1905 Revolution – HPQ</title>
 <style>
+    * { box-sizing: border-box; }
     body {
         font-family: Georgia, serif;
         margin: 0;
@@ -23,28 +23,38 @@
         background: #102844;
         padding: 10px;
         text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 5;
     }
     nav a {
         color: white;
-        margin: 0 15px;
+        margin: 0 10px;
         text-decoration: none;
         font-weight: bold;
+        font-size: 14px;
+    }
+    nav a:hover {
+        text-decoration: underline;
     }
     section {
         background: white;
         margin: 25px auto;
         padding: 25px;
-        width: 85%;
+        width: 90%;
+        max-width: 1100px;
         border-radius: 10px;
-        box-shadow: 0 0 12px rgba(0,0,0,0.15);
+        box-shadow: 0 0 12px rgba(0,0,0,0.12);
     }
     h2 {
         color: #1a3d6d;
         border-bottom: 2px solid #1a3d6d;
         padding-bottom: 5px;
+        margin-top: 0;
     }
     h3 {
         color: #244f85;
+        margin-bottom: 5px;
     }
     .quote {
         background: #f0f6ff;
@@ -53,25 +63,64 @@
         margin: 10px 0;
         font-style: italic;
     }
+    .image-space {
+        border: 2px dashed #c0c8d8;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        text-align: center;
+        color: #777;
+        background: #fafbff;
+    }
+    .image-space span {
+        display: block;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    ul {
+        margin-top: 5px;
+    }
+    .timeline-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    .timeline-table th, .timeline-table td {
+        border: 1px solid #c0c8d8;
+        padding: 8px;
+        font-size: 14px;
+    }
+    .timeline-table th {
+        background: #e1e7f2;
+    }
     .quiz-question {
         margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #dde3f0;
     }
     button {
         background: #1a3d6d;
         color: white;
-        padding: 12px 25px;
+        padding: 10px 20px;
         border: none;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 16px;
+        margin-top: 10px;
     }
     button:hover {
         background: #2a5ca0;
     }
     #result {
-        font-size: 22px;
-        margin-top: 20px;
+        font-size: 18px;
+        margin-top: 15px;
         font-weight: bold;
+    }
+    footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        color: #555;
     }
     canvas {
         position: fixed;
@@ -79,10 +128,49 @@
         left: 0;
         pointer-events: none;
     }
+
+    /* Splash screen */
+    #splash-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1s ease;
+    }
+    #splash-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        text-align: center;
+        max-width: 400px;
+    }
+    #splash-card img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+    #splash-card h2 {
+        border: none;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
 </style>
 </head>
-
 <body>
+
+<!-- Splash Screen -->
+<div id="splash-overlay">
+    <div id="splash-card">
+        <img src="splash.jpg" alt="Welcome image">
+        <h2>Higher Project Qualification</h2>
+        <p>Russo‑Japanese War & the 1905 Revolution</p>
+    </div>
+</div>
 
 <header>
     <h1>The Russo‑Japanese War & The Road to the 1905 Revolution</h1>
@@ -91,217 +179,307 @@
 
 <nav>
     <a href="#intro">Introduction</a>
-    <a href="#factors">Key Factors</a>
-    <a href="#maps">Maps</a>
-    <a href="#analysis">Comparative Analysis</a>
+    <a href="#factors">Essay Factors</a>
+    <a href="#maps">Maps & Images</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#conclusion">Conclusion</a>
+    <a href="#planning">Planning & Production Log</a>
+    <a href="#timeline">Timeline</a>
     <a href="#quiz">Quiz</a>
 </nav>
 
 <section id="intro">
     <h2>Introduction</h2>
     <p>
-        The Russo‑Japanese War (1904–1905) was a turning point in Russian history.  
-        Its defeat triggered political, economic, and social shockwaves that directly contributed to the outbreak of the 1905 Revolution.  
-        This website summarises the key factors from the war that destabilised the Tsarist regime and evaluates which was the most significant.
+        In 1905, the Russian Empire experienced a revolution that transformed it from an absolute monarchy into a semi‑constitutional state.
+        One of the key catalysts for this upheaval was the Russo‑Japanese War of 1904–1905. This conflict, fought largely over influence in
+        Manchuria and Korea, exposed deep weaknesses in Russia’s economy, military, and political system.
     </p>
-
-    <div class="quote">
-        “The war revealed the outdated nature of Russia’s military, the fragility of its economy, and the declining legitimacy of the autocracy.”
+    <p>
+        This project investigates the question:
+        <strong>“What was the most important factor of the Russo‑Japanese War to the 1905 revolution’s beginning?”</strong>
+        It evaluates four main factors: economic disruption, loss of military prestige, loss of eastern territories and influence, and the
+        collapse of faith in the Tsar.
+    </p>
+    <div class="image-space">
+        IMAGE SPACE – Introduction illustration (e.g. photo of Nicholas II, warships, or a general overview image)
+        <span>Insert an introductory image here.</span>
     </div>
 </section>
 
 <section id="factors">
-    <h2>Major Factors Linking the War to the 1905 Revolution</h2>
+    <h2>Key Factors from the Russo‑Japanese War</h2>
 
     <h3>1. Economic Disruption</h3>
     <p>
-        The war cost Russia <strong>6.554 billion rubles</strong>, with over half spent on loan interest.  
-        This forced the government to raise taxes on peasants, cancel infrastructure projects, and abandon profitable East Asian markets.
+        The Russo‑Japanese War placed immense strain on the Russian economy. The conflict cost Russia around
+        <strong>6.554 billion rubles</strong>, with more than half of that sum spent on servicing foreign and domestic loans.
+        This forced the government to increase taxes on an already impoverished peasantry and cancel important infrastructure projects.
+    </p>
+    <p>
+        Russia had previously pursued “peaceful economic penetration” into Manchuria and Korea, where its economic presence had grown
+        from 415 million rubles in 1867 to 1 billion rubles by 1897. The defeat in the war meant the loss of these profitable markets,
+        as well as commercial ports and trade routes such as Dalny. This led to job losses, reduced revenue, and deepening resentment
+        towards the Tsarist regime.
     </p>
     <div class="quote">
-        “The war required the use of all financial means by the tsarist government.” – Brill, Military Expenditures
+        “The war required the use of all financial means by the tsarist government.” – Military Expenditures in the Russo‑Japanese War
     </div>
-    <p>
-        Russia also lost access to Manchuria and Korea, where its economic presence had grown from 415 million rubles (1867) to 1 billion (1897).  
-        Losing these regions meant losing jobs, trade routes, and vital exports.
-    </p>
+    <div class="image-space">
+        IMAGE SPACE – Economic charts, trade maps, or graphs showing costs of war
+        <span>Insert economic‑related visuals here.</span>
+    </div>
 
     <h3>2. Loss of Military Prestige</h3>
     <p>
-        Russia entered the war as a supposed great power.  
-        It exited humiliated.  
-        The public saw the army’s outdated tactics, poor logistics, and incompetent leadership.
+        Russia entered the war as a supposed great power with a vast empire and a large army. However, the conflict exposed outdated tactics,
+        poor logistics, and flawed leadership. Observers such as the United States Corps of Engineers noted that Russian cavalry raids,
+        like General Mischtchenko’s, caused little inconvenience to the Japanese, highlighting ineffective offensive operations.
+    </p>
+    <p>
+        The defeat shattered the myth of an invincible Russian army. For revolutionaries and opposition groups, this was crucial:
+        it showed that the state could be challenged. The exposure of military weakness emboldened those who sought radical change.
     </p>
     <div class="quote">
-        “General Mischtchenko’s raid could not have caused the Japanese any inconvenience.” – US Corps of Engineers (1910)
+        “General Mischtchenko’s raid to the rear of the Japanese army could not at all have caused its commanders any inconvenience.”
     </div>
-    <p>
-        The myth of an invincible Russian army collapsed, emboldening revolutionaries who now believed the state could be challenged.
-    </p>
+    <div class="image-space">
+        IMAGE SPACE – Battle diagrams, photos of troops, or military equipment
+        <span>Insert military‑related images here.</span>
+    </div>
 
     <h3>3. Loss of Eastern Territories & Influence</h3>
     <p>
-        The Treaty of Portsmouth forced Russia to surrender:
+        The Treaty of Portsmouth, which ended the war, forced Russia to surrender key territories and influence in East Asia. Russia lost:
     </p>
     <ul>
-        <li>Port Arthur (vital warm‑water port)</li>
+        <li>The Liaodong Peninsula, including the vital warm‑water port of Port Arthur</li>
         <li>Half of Sakhalin Island</li>
-        <li>Influence in Manchuria</li>
-        <li>The South Manchurian Railway</li>
+        <li>Influence in southern Manchuria</li>
+        <li>Control of the South Manchurian Railway</li>
     </ul>
     <p>
-        This humiliation damaged national pride and ended Russia’s imperial ambitions in East Asia.
+        These losses damaged national pride and effectively ended Russia’s expansionist ambitions in East Asia. Being defeated by a
+        previously underestimated non‑European power was a profound humiliation, further undermining confidence in the Tsarist regime.
     </p>
+    <div class="image-space">
+        IMAGE SPACE – Map of territorial changes, Port Arthur, Sakhalin
+        <span>Insert territorial maps here.</span>
+    </div>
 
     <h3>4. Collapse of Faith in the Tsar</h3>
     <p>
-        Nicholas II’s leadership was discredited.  
-        Riots erupted, martial law was imposed, and political opposition surged.
+        The war intensified criticism of Tsar Nicholas II and the autocratic system. Riots and unrest broke out, and martial law was imposed
+        in some areas. The defeat seemed to confirm the opposition’s view that the Tsar was incompetent and out of touch.
+    </p>
+    <p>
+        The assassination of Interior Minister Plehve in 1904, one of the key figures who had supported the war, symbolised the erosion
+        of state authority. Nationalism grew among non‑Russian ethnic groups within the empire, and support for alternative political
+        movements, such as liberals and socialists, increased.
     </p>
     <div class="quote">
-        “The defeat justified criticism of the autocrat’s incompetent nature.” – 1914–1918 Online
+        “The defeat justified the political opposition’s criticism of the autocrat’s incompetent nature.” – 1914–1918 Online
     </div>
-    <p>
-        The assassination of Interior Minister Plehve in 1904 symbolised the collapse of state authority.
-    </p>
+    <div class="image-space">
+        IMAGE SPACE – Portraits of Nicholas II, protests, or political cartoons
+        <span>Insert political‑related images here.</span>
+    </div>
 </section>
 
 <section id="maps">
     <h2>Maps & Visuals</h2>
-    <p>You can insert your maps here (e.g., theatre of war, ethnic map of the empire).</p>
+    <div class="image-space">
+        IMAGE SPACE – Theatre of the Russo‑Japanese War
+        <span>Map showing Manchuria, Korea, Port Arthur, Mukden, and Tsushima.</span>
+    </div>
+    <div class="image-space">
+        IMAGE SPACE – Ethnographic Map of the Russian Empire (c. 1914)
+        <span>Map showing ethnic groups across the empire.</span>
+    </div>
+    <div class="image-space">
+        IMAGE SPACE – Additional diagrams or photos
+        <span>Use this space for any extra visuals you want to include.</span>
+    </div>
 </section>
 
 <section id="analysis">
     <h2>Comparative Analysis of Factors</h2>
     <p>
-        All four factors contributed significantly to the 1905 Revolution, but the exposure of Russia’s military weakness was the most decisive.  
-        Without the collapse of military prestige, revolutionaries would not have believed the Tsarist regime could be successfully challenged.
+        All four factors contributed significantly to the outbreak of the 1905 Revolution. Economic disruption burdened peasants and
+        exposed the regime’s financial mismanagement. Territorial losses humiliated the empire and ended its East Asian ambitions.
+        The collapse of faith in the Tsar weakened the legitimacy of the autocracy and encouraged support for alternative political
+        movements.
     </p>
     <p>
-        Economic strain, territorial losses, and political disillusionment were powerful — but they depended on the military humiliation to transform unrest into revolution.
+        However, the most important factor was the <strong>loss of military prestige</strong>. Without the exposure of Russia’s military
+        weakness, revolutionaries might still have believed that the state was too powerful to challenge. The war demonstrated that
+        the army was not invincible and that the regime could be defeated. This psychological shift was crucial in turning discontent
+        into active revolution.
     </p>
+    <div class="image-space">
+        IMAGE SPACE – Comparative chart or factor ranking
+        <span>Insert a visual comparing the significance of each factor.</span>
+    </div>
+</section>
+
+<section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+        The Russo‑Japanese War acted as a catalyst for the 1905 Revolution by exposing deep structural weaknesses in the Russian Empire.
+        Economic strain, territorial losses, and political disillusionment all played vital roles in undermining the Tsarist regime.
+    </p>
+    <p>
+        Yet, it was the <strong>loss of military prestige</strong> that proved most decisive. Once the myth of an unbeatable army was
+        shattered, the idea of revolution became not only desirable but achievable. The war did not create all of Russia’s problems,
+        but it brought them into sharp focus and accelerated the drive towards change.
+    </p>
+    <div class="image-space">
+        IMAGE SPACE – Final summary image (e.g. revolution scene, Duma, or symbolic image)
+        <span>Insert a concluding visual here.</span>
+    </div>
+</section>
+
+<section id="planning">
+    <h2>Planning & Production Log</h2>
+
+    <h3>Initial Idea & Title</h3>
+    <p>
+        Original working title: <em>“How did the Russo‑Japanese War lead to the 1905 Revolution?”</em><br>
+        Final title: <strong>“What was the most important factor of the Russo‑Japanese War to the 1905 revolution’s beginning?”</strong>
+    </p>
+
+    <h3>Objectives</h3>
+    <ul>
+        <li>Find out which factor was the most significant.</li>
+        <li>Identify whether there was a specific trigger for the revolution.</li>
+        <li>Determine which factor was least significant.</li>
+    </ul>
+
+    <h3>Research Plan</h3>
+    <p>
+        Initial research focused on reputable sources such as Britannica, 1914–1918 Online, JSTOR articles, Brill chapters, BBC Bitesize,
+        and primary materials like diaries and official documents (e.g. the Imperial Edict on peace with Russia).
+    </p>
+    <p>
+        The plan evolved into a six‑paragraph essay structure:
+    </p>
+    <ul>
+        <li>Introduction to the war and context</li>
+        <li>Economic disruption</li>
+        <li>Loss of military prestige</li>
+        <li>Loss of eastern territories and influence</li>
+        <li>Loss of faith in the Tsar</li>
+        <li>Comparative analysis and conclusion</li>
+    </ul>
+
+    <h3>Supervisor Feedback & Modifications</h3>
+    <ul>
+        <li>Change from two large factor paragraphs to four smaller, clearer ones.</li>
+        <li>Add more analysis, not just narrative description.</li>
+        <li>Adopt a PEEL structure (Point, Evidence, Explanation, Link).</li>
+        <li>Change the question to focus on the <em>most important factor</em>.</li>
+        <li>Add an analysis paragraph before the conclusion.</li>
+        <li>Reference throughout and explain the relevance of images.</li>
+    </ul>
+
+    <h3>Mid‑Project Review Summary</h3>
+    <p>
+        By the mid‑project stage, around 1,975 words had been written, with all main paragraphs completed and a conclusion drafted.
+        Sources were evaluated for reliability (e.g. peer‑reviewed JSTOR and Brill articles). Some initial sources were dropped if they
+        did not directly address the link between the war and the 1905 Revolution.
+    </p>
+    <p>
+        The project then shifted to refining analysis, strengthening references, and ensuring that each factor was clearly linked back
+        to the central question.
+    </p>
+
+    <div class="image-space">
+        IMAGE SPACE – Planning diagrams, mind maps, or notes
+        <span>Insert planning‑related images here.</span>
+    </div>
+</section>
+
+<section id="timeline">
+    <h2>Planning Timeline</h2>
+    <table class="timeline-table">
+        <tr>
+            <th>Deadline</th>
+            <th>Task</th>
+            <th>Justification</th>
+        </tr>
+        <tr>
+            <td>25 December 2025</td>
+            <td>Finish compiling sources</td>
+            <td>Needed before writing to ensure a solid research base.</td>
+        </tr>
+        <tr>
+            <td>5 January 2026</td>
+            <td>Start writing HPQ and finish introduction</td>
+            <td>With sources ready, begin drafting and set the tone of the essay.</td>
+        </tr>
+        <tr>
+            <td>5 February 2026</td>
+            <td>Finish 1st paragraph (economic disruption)</td>
+            <td>Allows time to focus on one factor in depth.</td>
+        </tr>
+        <tr>
+            <td>15 February 2026</td>
+            <td>Refine 1st paragraph</td>
+            <td>One week to review and improve analysis and references.</td>
+        </tr>
+        <tr>
+            <td>15 March 2026</td>
+            <td>Finish 2nd paragraph (military prestige)</td>
+            <td>Continue building the main body of the essay.</td>
+        </tr>
+        <tr>
+            <td>25 March 2026</td>
+            <td>Refine 2nd paragraph</td>
+            <td>Ensure clarity and depth of argument.</td>
+        </tr>
+        <tr>
+            <td>25 April 2026</td>
+            <td>Finish 3rd & 4th paragraphs (territories & Tsar)</td>
+            <td>Use time between assessments to complete middle sections.</td>
+        </tr>
+        <tr>
+            <td>5 May 2026</td>
+            <td>Refine 3rd & 4th paragraphs</td>
+            <td>Polish structure, evidence, and links to the question.</td>
+        </tr>
+        <tr>
+            <td>25 May 2026</td>
+            <td>Finish conclusion and refine entire HPQ</td>
+            <td>Finalise judgement and ensure coherence across the essay.</td>
+        </tr>
+    </table>
+
+    <div class="image-space">
+        IMAGE SPACE – Timeline graphic or Gantt chart
+        <span>Insert a visual timeline here.</span>
+    </div>
 </section>
 
 <section id="quiz">
-    <h2>📝 Knowledge Quiz</h2>
-
-    <div class="quiz-question">
-        <p><strong>1. How much did the war cost Russia?</strong></p>
-        <input type="radio" name="q1" value="correct"> 6.554 billion rubles<br>
-        <input type="radio" name="q1" value="wrong"> 1 billion rubles<br>
-        <input type="radio" name="q1" value="wrong"> 500 million rubles<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>2. Which port did Russia lose?</strong></p>
-        <input type="radio" name="q2" value="correct"> Port Arthur<br>
-        <input type="radio" name="q2" value="wrong"> Odessa<br>
-        <input type="radio" name="q2" value="wrong"> Kronstadt<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>3. What railway did Japan gain?</strong></p>
-        <input type="radio" name="q3" value="correct"> South Manchurian Railway<br>
-        <input type="radio" name="q3" value="wrong"> Trans‑Siberian Railway<br>
-        <input type="radio" name="q3" value="wrong"> Baltic Railway<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>4. Which minister was assassinated in 1904?</strong></p>
-        <input type="radio" name="q4" value="correct"> Plehve<br>
-        <input type="radio" name="q4" value="wrong"> Witte<br>
-        <input type="radio" name="q4" value="wrong"> Stolypin<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>5. What did the war reveal about Russia’s army?</strong></p>
-        <input type="radio" name="q5" value="correct"> Outdated tactics and poor leadership<br>
-        <input type="radio" name="q5" value="wrong"> Superior technology<br>
-        <input type="radio" name="q5" value="wrong"> Strong logistics<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>6. Which region did Russia evacuate?</strong></p>
-        <input type="radio" name="q6" value="correct"> Southern Manchuria<br>
-        <input type="radio" name="q6" value="wrong"> Finland<br>
-        <input type="radio" name="q6" value="wrong"> Poland<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>7. What was Russia’s economic presence in East Asia worth by 1897?</strong></p>
-        <input type="radio" name="q7" value="correct"> 1 billion rubles<br>
-        <input type="radio" name="q7" value="wrong"> 10 billion rubles<br>
-        <input type="radio" name="q7" value="wrong"> 200 million rubles<br>
-    </div>
-
-    <div class="quiz-question">
-        <p><strong>8. Which factor does the essay conclude was most important?</strong></p>
-        <input type="radio" name="q8" value="correct"> Loss of military prestige<br>
-        <input type="radio" name="q8" value="wrong"> Economic disruption<br>
-        <input type="radio" name="q8" value="wrong"> Territorial losses<br>
-    </div>
-
+    <h2>Quiz – Test Your Knowledge</h2>
+    <p>Questions and answers are randomised each time. Get them all right to trigger confetti!</p>
+    <div id="quiz-container"></div>
     <button onclick="checkQuiz()">Submit Answers</button>
+    <button onclick="renderQuiz()">Reset Quiz</button>
     <p id="result"></p>
 </section>
 
 <canvas id="confetti"></canvas>
 
+<footer>
+    &copy; 2026 – Higher Project Qualification – Joseph Leigh
+</footer>
+
 <script>
-// QUIZ CHECKER
-function checkQuiz() {
-    let correct = 0;
-    const total = 8;
+// ---------- Splash Screen ----------
+window.addEventListener('load', () => {
+    const splash = document.getElementById('splash-overlay');
+    splash.style.visibility = 'visible';
+    splash.style.opacity = '1';
 
-    for (let i = 1; i <= total; i++) {
-        const answer = document.querySelector(`input[name="q${i}"]:checked`);
-        if (answer && answer.value === "correct") correct++;
-    }
-
-    const result = document.getElementById("result");
-
-    if (correct === total) {
-        result.textContent = "Perfect score! 🎉 You really know your history.";
-        launchConfetti();
-    } else {
-        result.textContent = `You scored ${correct}/${total}. Keep revising!`;
-    }
-}
-
-// CONFETTI EFFECT
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let confettiPieces = [];
-
-function launchConfetti() {
-    confettiPieces = [];
-    for (let i = 0; i < 300; i++) {
-        confettiPieces.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height - canvas.height,
-            size: Math.random() * 8 + 4,
-            speed: Math.random() * 4 + 2,
-            color: `hsl(${Math.random() * 360}, 100%, 50%)`
-        });
-    }
-    animateConfetti();
-}
-
-function animateConfetti() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    confettiPieces.forEach(p => {
-        ctx.fillStyle = p.color;
-        ctx.fillRect(p.x, p.y, p.size, p.size);
-        p.y += p.speed;
-    });
-
-    requestAnimationFrame(animateConfetti);
-}
-</script>
-
-</body>
-</html>
+    // Fade out after
