@@ -107,6 +107,7 @@
         cursor: pointer;
         font-size: 16px;
         margin-top: 10px;
+        margin-right: 5px;
     }
     button:hover {
         background: #2a5ca0;
@@ -482,4 +483,173 @@ window.addEventListener('load', () => {
     splash.style.visibility = 'visible';
     splash.style.opacity = '1';
 
-    // Fade out after
+    setTimeout(() => {
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.style.visibility = 'hidden';
+        }, 1500);
+    }, 2000);
+});
+
+// ---------- Quiz Data ----------
+const quizContainer = document.getElementById('quiz-container');
+const resultEl = document.getElementById('result');
+
+let questions = [
+    {
+        q: "How much did the Russo‑Japanese War cost Russia?",
+        options: ["6.554 billion rubles", "1 billion rubles", "500 million rubles", "10 billion rubles"],
+        correct: "6.554 billion rubles"
+    },
+    {
+        q: "Which key port did Russia lose after the war?",
+        options: ["Port Arthur", "Vladivostok", "Sevastopol", "Odessa"],
+        correct: "Port Arthur"
+    },
+    {
+        q: "Which railway did Japan gain control of?",
+        options: ["South Manchurian Railway", "Trans‑Siberian Railway", "Baltic Railway", "Moscow‑Kazan Railway"],
+        correct: "South Manchurian Railway"
+    },
+    {
+        q: "Which minister was assassinated in 1904?",
+        options: ["Plehve", "Witte", "Stolypin", "Kerensky"],
+        correct: "Plehve"
+    },
+    {
+        q: "What did the war reveal about Russia’s army?",
+        options: ["Outdated tactics and poor leadership", "Superior technology", "Strong logistics", "Invincibility in battle"],
+        correct: "Outdated tactics and poor leadership"
+    },
+    {
+        q: "Which region did Russia evacuate as a result of the war?",
+        options: ["Southern Manchuria", "Finland", "Poland", "The Caucasus"],
+        correct: "Southern Manchuria"
+    },
+    {
+        q: "By 1897, Russia’s economic presence in East Asia was worth approximately:",
+        options: ["1 billion rubles", "200 million rubles", "10 billion rubles", "415 million rubles"],
+        correct: "1 billion rubles"
+    },
+    {
+        q: "Which factor does the essay conclude was the most important?",
+        options: ["Loss of military prestige", "Economic disruption", "Territorial losses", "Loss of faith in the Tsar"],
+        correct: "Loss of military prestige"
+    },
+    {
+        q: "Which treaty ended the Russo‑Japanese War?",
+        options: ["Treaty of Portsmouth", "Treaty of Brest‑Litovsk", "Treaty of Versailles", "Treaty of Nystad"],
+        correct: "Treaty of Portsmouth"
+    },
+    {
+        q: "What effect did the war have on public perception of the Tsar?",
+        options: ["It weakened faith in his leadership", "It greatly increased his popularity", "It had no impact", "It made him appear more democratic"],
+        correct: "It weakened faith in his leadership"
+    }
+];
+
+// ---------- Shuffle Helper ----------
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
+
+// ---------- Render Quiz ----------
+function renderQuiz() {
+    resultEl.textContent = "";
+    quizContainer.innerHTML = "";
+
+    let qCopy = JSON.parse(JSON.stringify(questions));
+    shuffle(qCopy);
+
+    window.currentQuiz = qCopy;
+
+    qCopy.forEach((item, index) => {
+        shuffle(item.options);
+
+        const div = document.createElement("div");
+        div.className = "quiz-question";
+
+        div.innerHTML = `<p><strong>${index + 1}. ${item.q}</strong></p>`;
+
+        item.options.forEach(opt => {
+            const id = `q${index}_${opt.replace(/\s+/g, "_")}`;
+            div.innerHTML += `
+                <label>
+                    <input type="radio" name="q${index}" value="${opt}">
+                    ${opt}
+                </label><br>
+            `;
+        });
+
+        quizContainer.appendChild(div);
+    });
+}
+
+// ---------- Check Quiz ----------
+function checkQuiz() {
+    if (!window.currentQuiz) return;
+
+    let correct = 0;
+
+    window.currentQuiz.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && selected.value === item.correct) correct++;
+    });
+
+    const total = window.currentQuiz.length;
+
+    if (correct === total) {
+        resultEl.textContent = `Perfect score! ${correct}/${total} 🎉`;
+        launchConfetti();
+    } else {
+        resultEl.textContent = `You scored ${correct}/${total}. Keep revising and try again!`;
+    }
+}
+
+// ---------- Confetti ----------
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let confettiPieces = [];
+
+function launchConfetti() {
+    confettiPieces = [];
+    for (let i = 0; i < 300; i++) {
+        confettiPieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 8 + 4,
+            speed: Math.random() * 4 + 2,
+            color: `hsl(${Math.random() * 360}, 100%, 50%)`
+        });
+    }
+    animateConfetti();
+}
+
+function animateConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confettiPieces.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+        p.y += p.speed;
+    });
+    requestAnimationFrame(animateConfetti);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// initial quiz render
+renderQuiz();
+</script>
+
+</body>
+</html>
+
