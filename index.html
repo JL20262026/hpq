@@ -310,6 +310,8 @@ window.onload = function() {
         { q:"What did the war reveal?", options:["Outdated tactics","Superior tech","Strong logistics","Invincible army"], correct:"Outdated tactics" }
     ];
 
+   let confettion = false;
+   
     function shuffle(arr){
         for(let i=arr.length-1;i>0;i--){
             const j=Math.floor(Math.random()*(i+1));
@@ -347,8 +349,12 @@ window.onload = function() {
             if(selected && selected.value===item.correct) correct++;
         });
         if(correct===window.currentQuiz.length){
-            resultEl.textContent=`Perfect! ${correct}/${window.currentQuiz.length}`;
-            launchConfetti();
+           if (confettion == false) {
+               resultEl.textContent=`Perfect! ${correct}/${window.currentQuiz.length}`;
+               launchConfetti();
+               confettion = true;
+           }
+           
         } else {
             resultEl.textContent=`You scored ${correct}/${window.currentQuiz.length}`;
         }
